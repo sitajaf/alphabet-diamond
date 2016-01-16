@@ -16,7 +16,7 @@ public class DiamondBuilderTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-         builder = new DiamondBuilder(mockReaderWriter);
+        builder = new DiamondBuilder(mockReaderWriter);
     }
 
     @Test
@@ -39,6 +39,19 @@ public class DiamondBuilderTest {
         verify(mockReaderWriter, times(4)).print("C");
         verify(mockReaderWriter, times(2)).print("D");
 
+    }
 
+    @Test
+    public void shouldNotAllowInvalidInput() throws Exception {
+        builder.draw("23");
+        verify(mockReaderWriter).print("Invalid Input!");
+    }
+
+    @Test
+    public void shouldNotAllowOtherIvalidCharacters() throws Exception {
+        builder.draw("/");
+        builder.draw("3");
+        builder.draw("+");
+        verify(mockReaderWriter, times(3)).print("Invalid Input!");
     }
 }

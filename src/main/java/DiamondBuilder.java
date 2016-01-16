@@ -12,15 +12,17 @@ public class DiamondBuilder {
     }
 
     public void draw(String middleLetter) {
-        int letterPosition = letters.indexOf(middleLetter.toUpperCase());
-
-        printWhileExpanding(letterPosition);
-        printWhileNarrowing(letterPosition);
-
+        if (middleLetter.matches("[a-zA-Z]")) {
+            int letterPosition = letters.indexOf(middleLetter.toUpperCase());
+            printWhileExpanding(letterPosition);
+            printWhileNarrowing(letterPosition);
+        }else{
+            readerWriter.print("Invalid Input!");
+        }
     }
 
     private void printWhileNarrowing(int letterPosition) {
-        for(int count = letterPosition - 1; count >= 0; count-- ){
+        for (int count = letterPosition - 1; count >= 0; count--) {
             printLetters(letterPosition, count);
         }
     }
