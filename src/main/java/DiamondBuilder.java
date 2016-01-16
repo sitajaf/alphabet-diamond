@@ -16,26 +16,29 @@ public class DiamondBuilder {
             int letterPosition = letters.indexOf(middleLetter.toUpperCase());
             printWhileExpanding(letterPosition);
             printWhileNarrowing(letterPosition);
-        }else{
-            readerWriter.print("Invalid Input!");
-        }
-    }
-
-    private void printWhileNarrowing(int letterPosition) {
-        for (int count = letterPosition - 1; count >= 0; count--) {
-            printLetters(letterPosition, count);
+        } else {
+            readerWriter.println("Invalid Input!");
         }
     }
 
     private void printWhileExpanding(int letterPosition) {
         for (int count = 0; count <= letterPosition; count++) {
             printLetters(letterPosition, count);
+            readerWriter.goToNextLine();
         }
     }
 
+    private void printWhileNarrowing(int letterPosition) {
+        for (int count = letterPosition-1; count >= 0; count--) {
+            printLetters(letterPosition, count);
+            readerWriter.goToNextLine();
+        }
+    }
+
+
     private void printLetters(int letterPosition, int count) {
         int preSpaces = letterPosition - count;
-        int middleSpaces = count;
+        int middleSpaces = count > 0 ? ((count - 1) * 2) + 1 : count;
         String letterToPrint = letters.get(count);
 
         print(" ", preSpaces);

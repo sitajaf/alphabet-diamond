@@ -1,19 +1,22 @@
 import java.util.Scanner;
 
 public class ReaderWriter {
-    Scanner scanner;
+    Scanner scanner = new Scanner(System.in);
 
-    public ReaderWriter(Scanner scanner) {
-
-        this.scanner = scanner;
-    }
-
-    public String read(String message){
+    public String read(){
         return scanner.next();
     }
 
     public void print(String message){
         System.out.print(message);
+    }
+
+    public void println(String message){
+        System.out.println(message);
+    }
+
+    public void goToNextLine() {
+        System.out.print("\n");
     }
 
 }

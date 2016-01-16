@@ -33,7 +33,7 @@ public class DiamondBuilderTest {
     public void shouldbuildABCDDiamondGiveSmallCase() throws Exception {
         builder.draw("d");
 
-        verify(mockReaderWriter, times(21)).print(" ");
+        verify(mockReaderWriter, times(25)).print(" ");
         verify(mockReaderWriter, times(2)).print("A");
         verify(mockReaderWriter, times(4)).print("B");
         verify(mockReaderWriter, times(4)).print("C");
@@ -44,14 +44,14 @@ public class DiamondBuilderTest {
     @Test
     public void shouldNotAllowInvalidInput() throws Exception {
         builder.draw("23");
-        verify(mockReaderWriter).print("Invalid Input!");
+        verify(mockReaderWriter).println("Invalid Input!");
     }
 
     @Test
-    public void shouldNotAllowOtherIvalidCharacters() throws Exception {
+    public void shouldNotAllowOtherInvalidCharacters() throws Exception {
         builder.draw("/");
         builder.draw("3");
         builder.draw("+");
-        verify(mockReaderWriter, times(3)).print("Invalid Input!");
+        verify(mockReaderWriter, times(3)).println("Invalid Input!");
     }
 }

@@ -6,6 +6,12 @@ repositories {
     jcenter()
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'Runner'
+    }
+}
+
 dependencies {
     compile 'org.mockito:mockito-core:2.0.36-beta'
 
