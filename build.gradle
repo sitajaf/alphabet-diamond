@@ -8,7 +8,7 @@ repositories {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'Runner'
+        attributes 'Main-Class': 'DiamondPrinter'
     }
 }
 

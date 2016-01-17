@@ -5,13 +5,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class DiamondBuilderTest {
-    DiamondBuilder builder;
+public class DiamondGeneratorTest {
+    DiamondGenerator builder;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        builder = new DiamondBuilder();
+        builder = new DiamondGenerator();
     }
 
     @Test
