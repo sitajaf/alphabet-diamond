@@ -5,55 +5,59 @@ import java.util.List;
 public class DiamondBuilder {
     private List<String> letters = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
             "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"));
-    private ReaderWriter readerWriter;
+    String diamond = "";
+    String newLine = "\n";
 
-    public DiamondBuilder(ReaderWriter readerWriter) {
-        this.readerWriter = readerWriter;
-    }
 
-    public void draw(String middleLetter) {
-        if (middleLetter.matches("[a-zA-Z]")) {
-            int letterPosition = letters.indexOf(middleLetter.toUpperCase());
-            printWhileExpanding(letterPosition);
-            printWhileNarrowing(letterPosition);
+    public String generate(String highestLetter) {
+        diamond = "";
+        if (highestLetter.matches("[a-zA-Z]")) {
+            int letterPosition = letters.indexOf(highestLetter.toUpperCase());
+            appendWhileExpanding(letterPosition);
+            appendWhileNarrowing(letterPosition);
         } else {
-            readerWriter.println("Invalid Input!");
+            append("Invalid Input!");
         }
+        return diamond;
     }
 
-    private void printWhileExpanding(int letterPosition) {
+    private void appendWhileExpanding(int letterPosition) {
         for (int count = 0; count <= letterPosition; count++) {
-            printLetters(letterPosition, count);
-            readerWriter.goToNextLine();
+            appendCharacters(letterPosition, count);
         }
     }
 
-    private void printWhileNarrowing(int letterPosition) {
-        for (int count = letterPosition-1; count >= 0; count--) {
-            printLetters(letterPosition, count);
-            readerWriter.goToNextLine();
+    private void appendWhileNarrowing(int letterPosition) {
+        for (int count = letterPosition - 1; count >= 0; count--) {
+            appendCharacters(letterPosition, count);
         }
     }
 
-
-    private void printLetters(int letterPosition, int count) {
-        int preSpaces = letterPosition - count;
-        int middleSpaces = count > 0 ? ((count - 1) * 2) + 1 : count;
+    private void appendCharacters(int letterPosition, int count) {
+        int noOfPreSpaces = letterPosition - count;
+        int noOfMiddleSpaces = count > 0 ? ((count - 1) * 2) + 1 : count;
         String letterToPrint = letters.get(count);
 
-        print(" ", preSpaces);
-        print(letterToPrint, 1);
+        appendTimes(" ", noOfPreSpaces);
+        append(letterToPrint);
 
-        if (middleSpaces > 0) {
-            print(" ", middleSpaces);
-            print(letterToPrint, 1);
+        if (noOfMiddleSpaces > 0) {
+            appendTimes(" ", noOfMiddleSpaces);
+            append(letterToPrint);
         }
+        append(newLine);
     }
 
-    private void print(String message, int times) {
+    private void appendTimes(String letter, int times) {
         while (times > 0) {
-            readerWriter.print(message);
+            diamond = diamond.concat(letter);
             times--;
         }
     }
+
+    private void append(String letter) {
+        diamond = diamond.concat(letter);
+    }
+
+
 }
