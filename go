@@ -1,19 +1,26 @@
 #!/usr/bin/env bash
 
 function main {
-    if [ "$1" == "run" ]; then
-        run
-    else
-        echo "Unknown command!"
-    fi
+    case "$1" in
+        "run" )
+            run;;
+        "test" )
+            test;;
+        * )
+            echo "Unknown command!"
+    esac
 }
 
 function run {
     if [ ! -e ./build/libs/alphabet-diamond.jar ]; then
-        ./gradlew build
+        ./gradlew assemble
     fi
 
     java -jar ./build/libs/alphabet-diamond.jar
+}
+
+function test {
+    ./gradlew test
 }
 
 main $@
