@@ -5,7 +5,9 @@ function main {
         "run" )
             run;;
         "test" )
-            test;;
+            ./gradlew test ;;
+        "clean" )
+            ./gradlew clean ;;
         * )
             echo "Unknown command!"
     esac
@@ -17,10 +19,6 @@ function run {
     fi
 
     java -jar ./build/libs/alphabet-diamond.jar
-}
-
-function test {
-    ./gradlew test
 }
 
 main $@
